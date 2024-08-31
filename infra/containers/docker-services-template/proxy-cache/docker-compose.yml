@@ -1,0 +1,119 @@
+services:
+  registry-quay.io:
+    image: registry:2
+    environment:
+      - REGISTRY_PROXY_REMOTEURL=https://quay.io
+      - REGISTRY_HTTP_ADDR=0.0.0.0:443
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/tls.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/tls.key
+    restart: always
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    container_name: registry-quay.io
+    ports:
+      - "443:5000"
+    networks:
+      gapped_network:
+        ipv4_address: ${internal_quay_registry_address}
+    volumes:
+      - ./certs:/certs
+  registry-docker.io:
+    image: registry:2
+    environment:
+      - REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io
+      - REGISTRY_HTTP_ADDR=0.0.0.0:443
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/tls.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/tls.key
+    restart: always
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    container_name: registry-docker.io
+    ports:
+      - "443:5000"
+    networks:
+      gapped_network:
+        ipv4_address: ${internal_docker_registry_address}
+    volumes:
+      - ./certs:/certs
+  registry-registry.k8s.io:
+    image: registry:2
+    environment:
+      - REGISTRY_PROXY_REMOTEURL=https://registry.k8s.io
+      - REGISTRY_HTTP_ADDR=0.0.0.0:443
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/tls.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/tls.key
+    restart: always
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    container_name: registry-registry.k8s.io
+    ports:
+      - "443:5000"
+    networks:
+      gapped_network:
+        ipv4_address: ${internal_k8s_registry_address}
+    volumes:
+      - ./certs:/certs
+  registry-gcr.io:
+    image: registry:2
+    environment:
+      - REGISTRY_PROXY_REMOTEURL=https://gcr.io
+      - REGISTRY_HTTP_ADDR=0.0.0.0:443
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/tls.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/tls.key
+    restart: always
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    container_name: registry-gcr.io
+    ports:
+      - "443:5000"
+    networks:
+      gapped_network:
+        ipv4_address: ${internal_gcr_registry_address}
+    volumes:
+      - ./certs:/certs
+  registry-ghcr.io:
+    image: registry:2
+    environment:
+      - REGISTRY_PROXY_REMOTEURL=https://ghcr.io
+      - REGISTRY_HTTP_ADDR=0.0.0.0:443
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/tls.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/tls.key
+    restart: always
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    container_name: registry-ghcr.io
+    ports:
+      - "443:5000"
+    networks:
+      gapped_network:
+        ipv4_address: ${internal_ghcr_registry_address}
+    volumes:
+      - ./certs:/certs
+  registry-openshift.org:
+    image: registry:2
+    environment:
+      - REGISTRY_PROXY_REMOTEURL=https://registry.ci.openshift.org
+      - REGISTRY_HTTP_ADDR=0.0.0.0:443
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/tls.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/tls.key
+    restart: always
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    container_name: registry-openshift.org
+    ports:
+      - "443:5000"
+    networks:
+      gapped_network:
+        ipv4_address: ${internal_openshift_ci_registry_address}
+    volumes:
+      - ./certs:/certs
+networks:
+  gapped_network:
+    name: gapped_network
+    driver: macvlan
+    driver_opts:
+      parent: eth1
+    ipam:
+      config:
+        - subnet: ${internal_subnet}
+          gateway: ${internal_gateway}

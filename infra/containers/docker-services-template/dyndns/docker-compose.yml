@@ -1,0 +1,11 @@
+services:
+  dyndns:
+    image: tunix/digitalocean-dyndns
+    container_name: dyndns
+    environment:
+      - DOMAIN=${do_domain}
+      - NAME=*.${do_name}
+      - SLEEP_INTERVAL=60
+      - DIGITALOCEAN_TOKEN=${do_token}
+      - REMOVE_DUPLICATES=true
+    restart: always

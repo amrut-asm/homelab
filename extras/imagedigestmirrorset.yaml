@@ -1,0 +1,30 @@
+apiVersion: config.openshift.io/v1
+kind: ImageDigestMirrorSet
+metadata:
+  name: image-digest-mirror
+spec:
+  imageDigestMirrors:
+  - mirrorSourcePolicy: NeverContactSource
+    mirrors:
+    - quay.internal.nanibot.net
+    source: quay.io
+  - mirrorSourcePolicy: NeverContactSource
+    mirrors:
+    - registry-1.internal.nanibot.net
+    source: registry-1.docker.io
+  - mirrorSourcePolicy: NeverContactSource
+    mirrors:
+    - registry-k8s.internal.nanibot.net
+    source: registry.k8s.io
+  - mirrorSourcePolicy: NeverContactSource
+    mirrors:
+    - gcr.internal.nanibot.net
+    source: gcr.io
+  - mirrorSourcePolicy: NeverContactSource
+    mirrors:
+    - ghcr.internal.nanibot.net
+    source: ghcr.io
+  - mirrorSourcePolicy: NeverContactSource
+    mirrors:
+    - openshift-ci.internal.nanibot.net
+    source: registry.ci.openshift.org

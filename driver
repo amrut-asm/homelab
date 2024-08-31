@@ -1,0 +1,99 @@
+#!/bin/bash
+
+openshift_config_generator () {
+    touch openshift-generated/bootstrap.ign
+    touch openshift-generated/master.ign
+    touch openshift-generated/worker.ign
+    tofu $action -target=module.$module
+}
+
+openshift_approve_certs () {
+    export PATH=$PATH:./openshift-binaries
+    export KUBECONFIG=./openshift-generated/auth/kubeconfig
+    while [[ true ]]
+    do
+        oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
+        sleep 30
+    done 
+}
+
+openshift_wait_for_install () {
+    export PATH=$PATH:./openshift-binaries
+    openshift-binaries/openshift-install wait-for bootstrap-complete --log-level debug --dir openshift-generated
+    openshift-binaries/openshift-install wait-for install-complete --log-level debug --dir openshift-generated
+}
+
+exec_tofu () {
+    tofu $action -target=module.$module
+}
+
+print_help () {
+    echo ""
+    echo "Usage: ./driver -a <action> -m <module>"
+    echo ""
+    echo "Allowed Actions"
+    echo "---------------"
+    echo "1. apply"
+    echo "2. destroy"
+    echo ""
+    echo "Allowed Modules"
+    echo "---------------"
+    echo "1. router"
+    echo "2. containers"
+    echo "3. openshift-dns-validator"
+    echo "4. openshift-config-generator"
+    echo "5. openshift-bootstrap"
+    echo "6. openshift-master"
+    echo "7. openshift-worker"
+    echo "8. openshift-approve-certs"
+    echo "9. openshift-wait-for-install"
+}
+
+if [[ $# -ne 4 ]]
+then
+    print_help
+    exit 1
+fi
+
+while getopts a:m: flag
+do
+    case "${flag}" in
+        a) action=${OPTARG};;
+        m) module=${OPTARG};;
+    esac
+done
+
+case $action in
+    apply) echo "Action: apply";;
+    destroy) echo "Action: destroy";;
+    *) print_help; exit 1;;
+esac
+
+echo ""
+
+case $module in
+    router) echo "Module: Router";;
+    containers) echo "Module: Containers";;
+    openshift-dns-validator) echo "Module: OpenShift DNS Validator";;
+    openshift-config-generator) echo "Module: OpenShift Config Generator";;
+    openshift-bootstrap) echo "Module: OpenShift Bootstrap";;
+    openshift-master) echo "Module: OpenShift Master";;
+    openshift-worker) echo "Module: OpenShift Worker";;
+    openshift-approve-certs) openshift_approve_certs; exit 0;;
+    openshift-wait-for-install) openshift_wait_for_install; exit 0;;
+    *) print_help; exit 1;;
+esac
+
+echo ""
+read -p "Press enter to continue"
+echo ""
+
+if [ "$module" = "openshift-config-generator" ]
+then
+    openshift_config_generator
+else
+    touch openshift-generated/master.ign
+    touch openshift-generated/worker.ign
+    touch openshift-generated/bootstrap.ign
+    exec_tofu
+fi

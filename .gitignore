@@ -1,0 +1,12 @@
+.terraform*
+terraform.tfstate
+terraform.tfstate.backup
+docker-services-generated
+*.ign
+*.qcow2
+*.iso
+openshift-binaries/*
+openshift-generated/*
+.openshift*
+openshift-configs/*
+!.gitkeep

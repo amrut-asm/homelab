@@ -1,0 +1,39 @@
+services:
+  openshift-lb:
+    image: haproxy:latest
+    restart: always
+    container_name: openshift-lb
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    ports:
+      - "6443:6443"
+      - "22623:22623"
+      - "443:443"
+      - "80:80"
+      - "1936:1936"
+    networks:
+      gapped_network:
+        ipv4_address: ${internal_openshift_lb_address}
+      apublic_network:
+        ipv4_address: ${external_openshift_lb_address}
+    volumes:
+      - ./config:/usr/local/etc/haproxy:ro
+networks:
+  gapped_network:
+    name: gapped_network
+    driver: macvlan
+    driver_opts:
+      parent: eth1
+    ipam:
+      config:
+        - subnet: ${internal_subnet}
+          gateway: ${internal_gateway}
+  apublic_network:
+    name: apublic_network
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: ${external_subnet}
+          gateway: ${external_gateway}
