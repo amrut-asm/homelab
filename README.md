@@ -12,6 +12,11 @@ user = "nanibot"
 group = "libvirt"
 ```
 
+### Add a route for the 192.168.16.0/24 network (preferably via NetworkManager
+```
+ip route add 192.168.16.0/24 via 192.168.1.101
+```
+
 Make sure that your qcow2 images are resized to atleast 200G
 
 ```
