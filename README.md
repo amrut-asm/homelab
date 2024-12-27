@@ -1,5 +1,7 @@
 # OpenShift HomeLab on libvirt/KVM
 
+Check the youtube video for a full tutorial: [https://youtu.be/VyblhDBO56M](https://youtu.be/VyblhDBO56M)
+
 ![HomeLab](homelab.png)
 
 # Requirements
