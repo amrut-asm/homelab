@@ -1,38 +1,31 @@
 #!/bin/bash
-# NUMA Tuning for master VMs
-start_cpu1=8
-start_cpu2=72
-okd_count=1
-master_count=3
-for ((i=1 ; i<=1 ; i++));
-do
-	echo "Node $i"
-	echo "CPU Set 1"
-	echo "---------"
+set -eux
+virsh vcpupin okd-master1 0 8 --config
+virsh vcpupin okd-master1 1 9  --config
+virsh vcpupin okd-master1 2 10 --config
+virsh vcpupin okd-master1 3 11 --config
+virsh vcpupin okd-master1 4 12 --config
+virsh vcpupin okd-master1 5 13 --config
+virsh vcpupin okd-master1 6 14 --config
+virsh vcpupin okd-master1 7 15 --config
+virsh numatune okd-master1 --mode interleave --nodeset 1 --config
 
-	for ((j=0 ; j<=7 ; j++));
-	do
-		cpu=$(($start_cpu1 + $j))
-		virsh vcpupin okd-master$okd_count $j $cpu --config
-	done
-	virsh numatune okd-master$okd_count --mode interleave --nodeset $i --config
-	start_cpu1=$(($cpu + 1))
-	okd_count=$(($okd_count+1))
-	
-	if [ $okd_count -gt 3 ]
-	then
-		continue
-	fi
+virsh vcpupin okd-master2 0 72 --config
+virsh vcpupin okd-master2 1 73 --config
+virsh vcpupin okd-master2 2 74 --config
+virsh vcpupin okd-master2 3 75 --config
+virsh vcpupin okd-master2 4 76 --config
+virsh vcpupin okd-master2 5 77 --config
+virsh vcpupin okd-master2 6 78 --config
+virsh vcpupin okd-master2 7 79 --config
+virsh numatune okd-master2 --mode interleave --nodeset 1 --config
 
-	echo "Node $i"
-	echo "CPU Set 2"
-	echo "---------"
-	for ((k=0 ; k<=7; k++));
-	do
-		cpu=$(($start_cpu2 + $k))
-		virsh vcpupin okd-master$okd_count $k $cpu --config
-	done
-	virsh numatune okd-master$okd_count --mode interleave --nodeset $i --config
-	start_cpu2=$(($cpu + 1))
-	okd_count=$(($okd_count+1))
-done
+virsh vcpupin okd-master3 0 16 --config
+virsh vcpupin okd-master3 1 17 --config
+virsh vcpupin okd-master3 2 18 --config
+virsh vcpupin okd-master3 3 19 --config
+virsh vcpupin okd-master3 4 20 --config
+virsh vcpupin okd-master3 5 21 --config
+virsh vcpupin okd-master3 6 22 --config
+virsh vcpupin okd-master3 7 23 --config
+virsh numatune okd-master3 --mode interleave --nodeset 2 --config
