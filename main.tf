@@ -33,6 +33,7 @@ module "containers" {
   internal_gcr_registry_address = var.containers_internal_gcr_registry_address
   internal_ghcr_registry_address = var.containers_internal_ghcr_registry_address
   internal_openshift_ci_registry_address = var.containers_internal_openshift_ci_registry_address
+  internal_registry_address = var.containers_internal_registry_address
 }
 
 module "openshift-config-generator" {

@@ -41,6 +41,7 @@ containers_internal_k8s_registry_address = ""
 containers_internal_gcr_registry_address = ""
 containers_internal_ghcr_registry_address = ""
 containers_internal_openshift_ci_registry_address = ""
+containers_internal_registry_address = ""
 
 ###################################################
 #               OpenShift                         #  
