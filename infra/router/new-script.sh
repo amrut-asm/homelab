@@ -113,7 +113,7 @@ set service dns forwarding listen-address 192.168.16.1
 set service dns forwarding listen-address 192.168.1.101
 set service dns forwarding name-server 8.8.8.8
 set service dns forwarding name-server 8.8.4.4
-set service dns forwarding cache-size 0
+set service dns forwarding cache-size 10000
 set service dns forwarding allow-from 192.168.16.0/24
 set service dns forwarding allow-from 192.168.1.0/24
 
