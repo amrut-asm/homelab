@@ -20,6 +20,7 @@ resource "template_dir" "docker_services" {
     internal_gcr_registry_address = var.internal_gcr_registry_address
     internal_ghcr_registry_address = var.internal_ghcr_registry_address
     internal_openshift_ci_registry_address = var.internal_openshift_ci_registry_address
+    internal_registry_address = var.internal_registry_address
   }
 }
 

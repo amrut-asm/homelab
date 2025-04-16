@@ -91,3 +91,7 @@ variable containers_internal_ghcr_registry_address {
 variable containers_internal_openshift_ci_registry_address {
   type = string
 }
+
+variable containers_internal_registry_address {
+  type = string
+}
