@@ -105,6 +105,9 @@ set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-ma
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping openshift-ci-registry ip-address 192.168.16.9
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping openshift-ci-registry mac c0:ff:ee:00:00:09
 
+set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping nanibot-registry ip-address 192.168.16.10
+set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping nanibot-registry mac c0:ff:ee:00:00:10
+
 # DNS Configuration
 set service dns forwarding listen-address 192.168.16.1
 set service dns forwarding listen-address 192.168.1.101
@@ -124,6 +127,7 @@ set service dns forwarding authoritative-domain ${domain_name} records a registr
 set service dns forwarding authoritative-domain ${domain_name} records a gcr address 192.168.16.7
 set service dns forwarding authoritative-domain ${domain_name} records a ghcr address 192.168.16.8
 set service dns forwarding authoritative-domain ${domain_name} records a openshift-ci address 192.168.16.9
+set service dns forwarding authoritative-domain ${domain_name} records a registry address 192.168.16.10
 
 # A records for OpenShift
 
