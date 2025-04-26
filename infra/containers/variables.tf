@@ -62,18 +62,6 @@ variable "ssh_key" {
   type = string
 }
 
-variable "do_token" {
-  type = string
-}
-
-variable internal_openshift_lb_address {
-  type = string
-}
-
-variable external_openshift_lb_address {
-  type = string
-}
-
 variable internal_quay_registry_address {
   type = string
 }

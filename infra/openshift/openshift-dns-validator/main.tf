@@ -2,6 +2,7 @@ resource "terraform_data" "generate-openshift-generated" {
   provisioner "local-exec" {
     interpreter = [ "bash", "-ceu"]
     command = <<-EOL
+        nslookup registry.${var.domain}
         nslookup quay.${var.domain}
         nslookup registry-1.${var.domain}
         nslookup registry-k8s.${var.domain}

@@ -24,9 +24,6 @@ module "containers" {
   ssh_key = var.containers_ssh_key
   hostname = var.containers_hostname
   private_key_path = var.containers_private_key_path
-  do_token = var.containers_do_token
-  internal_openshift_lb_address = var.containers_internal_openshift_lb_address
-  external_openshift_lb_address = var.containers_external_openshift_lb_address
   internal_quay_registry_address = var.containers_internal_quay_registry_address
   internal_docker_registry_address = var.containers_internal_docker_registry_address
   internal_k8s_registry_address = var.containers_internal_k8s_registry_address
