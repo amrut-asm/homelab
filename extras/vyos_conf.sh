@@ -84,8 +84,8 @@ set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-ma
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping containers ip-address 192.168.16.2
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping containers mac c0:ff:ee:00:00:02
 
-set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping openshift-lb ip-address 192.168.16.3
-set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping openshift-lb mac c0:ff:ee:00:00:03
+set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping internal-registry ip-address 192.168.16.3
+set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping internal-registry mac c0:ff:ee:00:00:03
 
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping quay-registry ip-address 192.168.16.4
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping quay-registry mac c0:ff:ee:00:00:04
@@ -105,9 +105,6 @@ set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-ma
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping openshift-ci-registry ip-address 192.168.16.9
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping openshift-ci-registry mac c0:ff:ee:00:00:09
 
-set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping nanibot-registry ip-address 192.168.16.10
-set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 static-mapping nanibot-registry mac c0:ff:ee:00:00:10
-
 # DNS Configuration
 set service dns forwarding listen-address 192.168.16.1
 set service dns forwarding listen-address 192.168.1.101
@@ -121,24 +118,24 @@ set service dns forwarding allow-from 192.168.1.0/24
 set system name-server 192.168.16.1
 
 # A records for registries
+set service dns forwarding authoritative-domain ${domain_name} records a registry address 192.168.16.3
 set service dns forwarding authoritative-domain ${domain_name} records a quay address 192.168.16.4
 set service dns forwarding authoritative-domain ${domain_name} records a registry-1 address 192.168.16.5
 set service dns forwarding authoritative-domain ${domain_name} records a registry-k8s address 192.168.16.6
 set service dns forwarding authoritative-domain ${domain_name} records a gcr address 192.168.16.7
 set service dns forwarding authoritative-domain ${domain_name} records a ghcr address 192.168.16.8
 set service dns forwarding authoritative-domain ${domain_name} records a openshift-ci address 192.168.16.9
-set service dns forwarding authoritative-domain ${domain_name} records a registry address 192.168.16.10
 
 # A records for OpenShift
 
-set service dns forwarding authoritative-domain openshift.${domain_name} records a api address 192.168.1.103
-set service dns forwarding authoritative-domain openshift.${domain_name} records a api-int address 192.168.16.3
-set service dns forwarding authoritative-domain apps.openshift.${domain_name} records a any address 192.168.1.103
+set service dns forwarding authoritative-domain openshift.${domain_name} records a api address 192.168.1.250
+set service dns forwarding authoritative-domain openshift.${domain_name} records a api-int address 192.168.16.2
+set service dns forwarding authoritative-domain apps.openshift.${domain_name} records a any address 192.168.1.250
 
 # PTR records for OpenShift
 
-set service dns forwarding authoritative-domain 1.168.192.in-addr.arpa records ptr 103 target api.openshift.${domain_name}
-set service dns forwarding authoritative-domain 16.168.192.in-addr.arpa records ptr 3 target api-int.openshift.${domain_name}
+set service dns forwarding authoritative-domain 1.168.192.in-addr.arpa records ptr 250 target api.openshift.${domain_name}
+set service dns forwarding authoritative-domain 16.168.192.in-addr.arpa records ptr 2 target api-int.openshift.${domain_name}
 
 # A records for OpenShift control plane nodes
 set service dns forwarding authoritative-domain openshift.${domain_name} records a bootstrap address 192.168.16.11

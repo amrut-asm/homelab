@@ -3,13 +3,8 @@ resource "template_dir" "docker_services" {
   destination_dir = "${path.module}/docker-services-generated"
 
   vars = {
-    do_token = var.do_token,
     domain_name = var.domain_name,
-    do_name = split(".", var.domain_name)[0]
-    do_domain = join(".", [ split(".", var.domain_name)[1], split(".", var.domain_name)[2] ]),
     external_ip = var.external_ip,
-    internal_openshift_lb_address = var.internal_openshift_lb_address
-    external_openshift_lb_address = var.external_openshift_lb_address
     internal_subnet = var.internal_subnet
     external_subnet = var.external_subnet
     internal_gateway = var.internal_gateway

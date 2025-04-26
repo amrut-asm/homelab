@@ -56,18 +56,6 @@ variable "containers_ssh_key" {
   type = string
 }
 
-variable "containers_do_token" {
-  type = string
-}
-
-variable containers_internal_openshift_lb_address {
-  type = string
-}
-
-variable containers_external_openshift_lb_address {
-  type = string
-}
-
 variable containers_internal_quay_registry_address {
   type = string
 }
