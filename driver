@@ -4,7 +4,7 @@ openshift_config_generator () {
     touch openshift-generated/bootstrap.ign
     touch openshift-generated/master.ign
     touch openshift-generated/worker.ign
-    tofu $action -target=module.$module
+    tofu $action -target=module.$module --auto-approve
 }
 
 openshift_approve_certs () {
@@ -24,7 +24,7 @@ openshift_wait_for_install () {
 }
 
 exec_tofu () {
-    tofu $action -target=module.$module
+    tofu $action -target=module.$module --auto-approve
 }
 
 print_help () {

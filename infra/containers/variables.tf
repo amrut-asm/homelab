@@ -97,3 +97,7 @@ variable internal_ghcr_registry_address {
 variable internal_openshift_ci_registry_address {
   type = string
 }
+
+variable internal_registry_address {
+  type = string
+}

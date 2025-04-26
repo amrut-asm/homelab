@@ -20,8 +20,8 @@ resource "libvirt_ignition" "ignition" {
 
 resource "libvirt_domain" "node" {
   name   = "okd-worker${count.index+1}"
-  memory = "16384"
-  vcpu   = 8
+  memory = "32251"
+  vcpu   = 16
 
   autostart = false
 
