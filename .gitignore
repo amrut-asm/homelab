@@ -12,4 +12,3 @@ openshift-configs/*
 !.gitkeep
 talosconfig
 kubeconfig
-infra/talos/talos-init/files/*
