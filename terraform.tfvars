@@ -65,9 +65,9 @@ talos_worker_ip_list = [ "192.168.16.15/24", "192.168.16.16/24", "192.168.16.17/
 talos_gateway = "192.168.16.1"
 talos_nameserver = "192.168.16.1"
 
-talos_cluster_endpoint = "https://192.168.16.12:6443"
+talos_cluster_endpoint = "https://api-int.talos.internal.nanibot.net:6443"
 
-talos_cluster_name = "dev-cluster"
+talos_cluster_name = "talos-production"
 
 talos_controlplane_nodes = [
   "192.168.16.12",
