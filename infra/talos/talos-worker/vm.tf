@@ -37,8 +37,8 @@ resource "libvirt_cloudinit_disk" "cloud-init" {
 
 resource "libvirt_domain" "talos_server" {
   name   = "talos-worker${count.index+1}"
-  memory = "8192"
-  vcpu   = 4
+  memory = "32251"
+  vcpu   = 16
 
   cloudinit = libvirt_cloudinit_disk.cloud-init[count.index].id
 
