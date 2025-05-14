@@ -85,3 +85,7 @@ module talos-init {
   talos_controlplane_nodes = var.talos_controlplane_nodes
   talos_worker_nodes = var.talos_worker_nodes
 }
+
+module talos-helm {
+  source = "./infra/talos/talos-helm"
+}

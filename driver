@@ -51,6 +51,7 @@ print_help () {
     echo "10. talos-master"
     echo "11. talos-worker"
     echo "12. talos-init"
+    echo "13. talos-helm"
 }
 
 if [[ $# -ne 4 ]]
@@ -88,6 +89,7 @@ case $module in
     talos-master) echo "Module: Talos Master";;
     talos-worker) echo "Module: Talos Worker";;
     talos-init) echo "Module: Talos Init";;
+    talos-helm) echo "Module: Talos Helm";;
     *) print_help; exit 1;;
 esac
 
