@@ -82,7 +82,6 @@ module talos-init {
   source = "./infra/talos/talos-init"
   cluster_endpoint = var.talos_cluster_endpoint
   cluster_name = var.talos_cluster_name
-  extra_ca_certificate_path = var.talos_extra_ca_certificate_path
   talos_controlplane_nodes = var.talos_controlplane_nodes
   talos_worker_nodes = var.talos_worker_nodes
 }

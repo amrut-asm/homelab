@@ -4,4 +4,3 @@ cluster:
       name: none
   proxy:
     disabled: true
-

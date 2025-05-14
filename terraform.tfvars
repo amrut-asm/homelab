@@ -69,8 +69,6 @@ talos_cluster_endpoint = "https://192.168.16.32:6443"
 
 talos_cluster_name = "dev-cluster"
 
-talos_extra_ca_certificate_path = "./infra/containers/docker-services-generated/proxy-cache/certs/ca.crt"
-
 talos_controlplane_nodes = [
   "192.168.16.12",
   "192.168.16.13",
