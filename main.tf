@@ -61,3 +61,28 @@ module "openshift-worker" {
   mac_list = var.os_worker_mac_list
   internal_bridge = var.internal_bridge
 }
+
+module "talos-master" {
+  source = "./infra/talos/talos-master"
+  talos_master_mac_list = var.talos_master_mac_list
+  talos_master_ip_list = var.talos_master_ip_list
+  talos_gateway = var.talos_gateway
+  talos_nameserver = var.talos_nameserver
+}
+
+module "talos-worker" {
+  source = "./infra/talos/talos-worker"
+  talos_worker_mac_list = var.talos_worker_mac_list
+  talos_worker_ip_list = var.talos_worker_ip_list
+  talos_gateway = var.talos_gateway
+  talos_nameserver = var.talos_nameserver
+}
+
+module talos-init {
+  source = "./infra/talos/talos-init"
+  cluster_endpoint = var.talos_cluster_endpoint
+  cluster_name = var.talos_cluster_name
+  extra_ca_certificate_path = var.talos_extra_ca_certificate_path
+  talos_controlplane_nodes = var.talos_controlplane_nodes
+  talos_worker_nodes = var.talos_worker_nodes
+}

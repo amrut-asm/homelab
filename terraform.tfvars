@@ -51,3 +51,36 @@ os_master_mac_list = [ "c0:ff:ee:00:00:12", "c0:ff:ee:00:00:13", "c0:ff:ee:00:00
 
 os_worker_vm_count = 5
 os_worker_mac_list = [ "c0:ff:ee:00:00:15", "c0:ff:ee:00:00:16", "c0:ff:ee:00:00:17", "c0:ff:ee:00:00:18", "c0:ff:ee:00:00:19" ]
+
+###################################################
+#               Talos                             #
+###################################################
+
+talos_master_mac_list = [ "c0:ff:ee:00:00:12", "c0:ff:ee:00:00:13", "c0:ff:ee:00:00:14" ]
+talos_master_ip_list = [ "192.168.16.12/24", "192.168.16.13/24", "192.168.16.14/24" ]
+
+talos_worker_mac_list= [ "c0:ff:ee:00:00:15", "c0:ff:ee:00:00:16", "c0:ff:ee:00:00:17", "c0:ff:ee:00:00:18", "c0:ff:ee:00:00:19" ]
+talos_worker_ip_list = [ "192.168.16.15/24", "192.168.16.16/24", "192.168.16.17/24", "192.168.16.18/24", "192.168.16.19/24" ]
+
+talos_gateway = "192.168.16.1"
+talos_nameserver = "192.168.16.1"
+
+talos_cluster_endpoint = "https://192.168.16.32:6443"
+
+talos_cluster_name = "dev-cluster"
+
+talos_extra_ca_certificate_path = "./infra/containers/docker-services-generated/proxy-cache/certs/ca.crt"
+
+talos_controlplane_nodes = [
+  "192.168.16.12",
+  "192.168.16.13",
+  "192.168.16.14"
+]
+
+talos_worker_nodes = [
+  "192.168.16.15",
+  "192.168.16.16",
+  "192.168.16.17",
+  "192.168.16.18",
+  "192.168.16.19"
+]

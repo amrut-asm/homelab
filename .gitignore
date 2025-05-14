@@ -1,6 +1,6 @@
 .terraform*
 terraform.tfstate
-terraform.tfstate.backup
+terraform.tfstate*
 docker-services-generated
 *.ign
 *.qcow2
@@ -10,3 +10,5 @@ openshift-generated/*
 .openshift*
 openshift-configs/*
 !.gitkeep
+talosconfig
+kubeconfig

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eu
 
 openshift_config_generator () {
     touch openshift-generated/bootstrap.ign
@@ -47,6 +48,9 @@ print_help () {
     echo "7. openshift-worker"
     echo "8. openshift-approve-certs"
     echo "9. openshift-wait-for-install"
+    echo "10. talos-master"
+    echo "11. talos-worker"
+    echo "12. talos-init"
 }
 
 if [[ $# -ne 4 ]]
@@ -81,6 +85,9 @@ case $module in
     openshift-worker) echo "Module: OpenShift Worker";;
     openshift-approve-certs) openshift_approve_certs; exit 0;;
     openshift-wait-for-install) openshift_wait_for_install; exit 0;;
+    talos-master) echo "Module: Talos Master";;
+    talos-worker) echo "Module: Talos Worker";;
+    talos-init) echo "Module: Talos Init";;
     *) print_help; exit 1;;
 esac
 
