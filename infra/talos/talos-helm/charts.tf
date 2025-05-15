@@ -74,4 +74,9 @@ resource "helm_release" "cilium" {
     name  = "k8sServicePort"
     value = "6443"
   }
+
+  set {
+    name  = "bgpControlPlane.enabled"
+    value = "true"
+  }
 }
