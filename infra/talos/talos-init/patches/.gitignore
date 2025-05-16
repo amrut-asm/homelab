@@ -1,4 +1,4 @@
 # Ignore everything in this directory
-*
+ca.yaml
 # Except this file
 !.gitignore
