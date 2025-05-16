@@ -34,7 +34,7 @@ set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 option do
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 option name-server 192.168.16.1
 
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 range 0 start 192.168.16.2
-set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 range 0 stop 192.168.16.254
+set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 range 0 stop 192.168.16.100
 
 set service dhcp-server shared-network-name LAN subnet 192.168.16.0/24 subnet-id 1
 
@@ -168,6 +168,26 @@ set service dns forwarding authoritative-domain 16.168.192.in-addr.arpa records 
 set service dns forwarding authoritative-domain 16.168.192.in-addr.arpa records ptr 23 target compute-9.talos.${domain_name}
 set service dns forwarding authoritative-domain 16.168.192.in-addr.arpa records ptr 24 target compute-10.talos.${domain_name}
 
+# BGP Configuration (Peer with Cilium on Talos)
+set protocols bgp system-as 64512
+
+set protocols bgp neighbor 192.168.16.15 remote-as 64512
+set protocols bgp neighbor 192.168.16.15 address-family ipv4-unicast allowas-in number 1
+
+set protocols bgp neighbor 192.168.16.16 remote-as 64512
+set protocols bgp neighbor 192.168.16.16 address-family ipv4-unicast allowas-in number 1
+
+set protocols bgp neighbor 192.168.16.17 remote-as 64512
+set protocols bgp neighbor 192.168.16.17 address-family ipv4-unicast allowas-in number 1
+
+set protocols bgp neighbor 192.168.16.18 remote-as 64512
+set protocols bgp neighbor 192.168.16.18 address-family ipv4-unicast allowas-in number 1
+
+set protocols bgp neighbor 192.168.16.19 remote-as 64512
+set protocols bgp neighbor 192.168.16.19 address-family ipv4-unicast allowas-in number 1
+
+set protocols bgp 64512 router-id 192.168.16.101
+set protocols bgp 64512 neighbor 192.168.16.15 update-source 
 commit
 save
 exit

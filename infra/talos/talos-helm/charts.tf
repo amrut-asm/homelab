@@ -79,4 +79,19 @@ resource "helm_release" "cilium" {
     name  = "bgpControlPlane.enabled"
     value = "true"
   }
+
+  set {
+    name  = "ingressController.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "ingressController.default"
+    value = "true"
+  }
+
+  set {
+    name  = "ingressController.loadbalancerMode"
+    value = "shared"
+  }
 }
