@@ -127,7 +127,7 @@ set service dns forwarding authoritative-domain ${domain_name} records a openshi
 
 set service dns forwarding authoritative-domain talos.${domain_name} records a api address 192.168.1.250
 set service dns forwarding authoritative-domain talos.${domain_name} records a api-int address 192.168.16.2
-set service dns forwarding authoritative-domain apps.talos.${domain_name} records a any address 192.168.1.250
+set service dns forwarding authoritative-domain ${domain_name} records a any address 192.168.1.250
 
 # PTR records for Talos
 
