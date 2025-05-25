@@ -1,5 +1,35 @@
 #!/bin/bash
 set -eux
+virsh vcpupin talos-master1 0 8 --config
+virsh vcpupin talos-master1 1 9  --config
+virsh vcpupin talos-master1 2 10 --config
+virsh vcpupin talos-master1 3 11 --config
+virsh numatune talos-master1 --mode interleave --nodeset 1 --config
+
+virsh vcpupin talos-master2 0 12 --config
+virsh vcpupin talos-master2 1 13 --config
+virsh vcpupin talos-master2 2 14 --config
+virsh vcpupin talos-master2 3 15 --config
+virsh numatune talos-master2 --mode interleave --nodeset 1 --config
+
+virsh vcpupin talos-master3 0 72 --config
+virsh vcpupin talos-master3 1 73 --config
+virsh vcpupin talos-master3 2 74 --config
+virsh vcpupin talos-master3 3 75 --config
+virsh numatune talos-master3 --mode interleave --nodeset 1 --config
+
+# ----------------
+# Free 76 77 78 79
+# ----------------
+# node 1 cpus: 8 9 10 11 12 13 14 15 72 73 74 75 76 77 78 79
+# node 1 size: 32251 MB
+# node 1 free: 8275 MB
+# -------------
+# OpenShift SNO
+# -------------
+# node 2 cpus: 16 17 18 19 20 21 22 23 80 81 82 83 84 85 86 87
+# node 2 size: 32251 MB
+# node 2 free: 24733 MB
 
 # Worker 1
 virsh vcpupin talos-worker1 0 24 --config
@@ -95,17 +125,3 @@ virsh vcpupin talos-worker5 13 125 --config
 virsh vcpupin talos-worker5 14 126 --config
 virsh vcpupin talos-worker5 15 127 --config
 virsh numatune talos-worker5 --mode interleave --nodeset 7 --config
-
-# var=-1
-# for ((i=$1;i<=$2;i++))
-# do
-#         ((var++))
-#         echo "virsh vcpupin $3 $var $i --config"
-# done
-# loop_start=$1+64
-# loop_end=$2+64
-# for ((i=$loop_start;i<=$loop_end;i++))
-# do
-#         ((var++))
-#         echo "virsh vcpupin $3 $var $i --config"
-# done
