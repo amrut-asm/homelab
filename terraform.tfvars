@@ -82,3 +82,22 @@ talos_worker_nodes = [
   "192.168.16.18",
   "192.168.16.19"
 ]
+
+###################################################
+#               GNS3                              #
+###################################################
+# WARNING: GNS3 is exposed without any authentication
+gns3_internal_mac = "c0:ff:ee:00:00:11"
+gns3_external_mac = "96:c2:0e:36:09:74"
+gns3_internal_ip = "192.168.16.11"
+gns3_external_ip = "192.168.1.249"
+gns3_internal_subnet = "192.168.16.0/24"
+gns3_external_subnet = "192.168.1.0/24"
+gns3_internal_gateway = "192.168.16.1"
+gns3_external_gateway = "192.168.1.1"
+gns3_dns_server = "192.168.16.1"
+gns3_user_name = "nanibot"
+gns3_domain_name = "internal.nanibot.net"
+gns3_hostname = "gns3"
+gns3_private_key_path = "/home/nanibot/.ssh/id_rsa"
+gns3_ssh_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDTii6pRrQo87g08pCMfyVmvL7u8c3Byxb/LFPDBMbwGgV1LgSJCY8VD7zoHX85xN7odpWPyhJOtSEhTTGsjTbxroTFwJUQ6f9f6XhgiitShOOtaMwnhWxg9XH2wBhOFTfrB2FC+zAr9iR89kHQdfxoVPVhfg34Kg8085l16Vophst/fDnE5TxmZi4jMdkSQndOcnL2jcmf/Gvz/LGNxzpXzQ85D9xs9HufeXV6SU/Haeg3O8eDev4dFJ+WB4oE/Ht43xiiCrqbrllDo13tQ1PohZnHJDlLgFpk4AqAmCMPRYpk9QPjCnzTVU8XEh4CxQ3n736biV8R3KRmz6azJoQFCvHTm0N1+4SteKtoFB8PW7PA4RvhNvf8vIxvcDGdK/82riNaxbNjnIHK0bzWWAySvSf57yVGow9X/ymyK4/kAWD4n0EVEtKPdKh7DO455d3BRJUXtPKpPGVnLr2Awnc4nsWOrHb4J8Hu2iI7sAQeoxon2e4WDKSYRENq8FAtseU= nanibot@diablo.internal.nanibot.net"

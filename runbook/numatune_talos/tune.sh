@@ -18,6 +18,11 @@ virsh vcpupin talos-master3 2 74 --config
 virsh vcpupin talos-master3 3 75 --config
 virsh numatune talos-master3 --mode interleave --nodeset 1 --config
 
+virsh vcpupin gns3 0 76 --config
+virsh vcpupin gns3 1 77 --config
+virsh vcpupin gns3 2 78 --config
+virsh vcpupin gns3 3 79 --config
+virsh numatune gns3 --mode interleave --nodeset 1 --config
 # ----------------
 # Free 76 77 78 79
 # ----------------

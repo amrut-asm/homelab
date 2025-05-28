@@ -89,3 +89,23 @@ module talos-init {
 module talos-helm {
   source = "./infra/talos/talos-helm"
 }
+
+module "gns3" {
+  source = "./infra/gns3"
+  internal_mac = var.gns3_internal_mac
+  external_mac = var.gns3_external_mac
+  internal_bridge = var.internal_bridge
+  external_bridge = var.external_bridge
+  internal_ip = var.gns3_internal_ip
+  external_ip = var.gns3_external_ip
+  internal_gateway = var.gns3_internal_gateway
+  external_gateway = var.gns3_external_gateway
+  internal_subnet = var.gns3_internal_subnet
+  external_subnet = var.gns3_external_subnet
+  dns_server = var.gns3_dns_server
+  user_name = var.gns3_user_name
+  domain_name = var.gns3_domain_name
+  ssh_key = var.gns3_ssh_key
+  hostname = var.gns3_hostname
+  private_key_path = var.gns3_private_key_path
+}
