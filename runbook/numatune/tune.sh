@@ -1,6 +1,50 @@
 #!/bin/bash
 set -eux
 
+# Gns3
+virsh vcpupin gns3 0 80 --config
+virsh vcpupin gns3 1 81 --config
+virsh vcpupin gns3 2 82 --config
+virsh vcpupin gns3 3 83 --config
+virsh vcpupin gns3 4 84 --config
+virsh vcpupin gns3 5 85 --config
+virsh vcpupin gns3 6 86 --config
+virsh vcpupin gns3 7 87 --config
+virsh numatune gns3 --mode interleave --nodeset 2 --config
+
+# Master 1
+virsh vcpupin okd-master1 0 8 --config
+virsh vcpupin okd-master1 1 9  --config
+virsh vcpupin okd-master1 2 10 --config
+virsh vcpupin okd-master1 3 11 --config
+virsh vcpupin okd-master1 4 12 --config
+virsh vcpupin okd-master1 5 13 --config
+virsh vcpupin okd-master1 6 14 --config
+virsh vcpupin okd-master1 7 15 --config
+virsh numatune okd-master1 --mode interleave --nodeset 1 --config
+
+# Master 2
+virsh vcpupin okd-master2 0 72 --config
+virsh vcpupin okd-master2 1 73 --config
+virsh vcpupin okd-master2 2 74 --config
+virsh vcpupin okd-master2 3 75 --config
+virsh vcpupin okd-master2 4 76 --config
+virsh vcpupin okd-master2 5 77 --config
+virsh vcpupin okd-master2 6 78 --config
+virsh vcpupin okd-master2 7 79 --config
+virsh numatune okd-master2 --mode interleave --nodeset 1 --config
+
+# Master 3
+virsh vcpupin okd-master3 0 16 --config
+virsh vcpupin okd-master3 1 17 --config
+virsh vcpupin okd-master3 2 18 --config
+virsh vcpupin okd-master3 3 19 --config
+virsh vcpupin okd-master3 4 20 --config
+virsh vcpupin okd-master3 5 21 --config
+virsh vcpupin okd-master3 6 22 --config
+virsh vcpupin okd-master3 7 23 --config
+virsh numatune okd-master3 --mode interleave --nodeset 2 --config
+
 # Worker 1
 virsh vcpupin okd-worker1 0 24 --config
 virsh vcpupin okd-worker1 1 25 --config
@@ -95,17 +139,3 @@ virsh vcpupin okd-worker5 13 125 --config
 virsh vcpupin okd-worker5 14 126 --config
 virsh vcpupin okd-worker5 15 127 --config
 virsh numatune okd-worker5 --mode interleave --nodeset 7 --config
-
-# var=-1
-# for ((i=$1;i<=$2;i++))
-# do
-#         ((var++))
-#         echo "virsh vcpupin $3 $var $i --config"
-# done
-# loop_start=$1+64
-# loop_end=$2+64
-# for ((i=$loop_start;i<=$loop_end;i++))
-# do
-#         ((var++))
-#         echo "virsh vcpupin $3 $var $i --config"
-# done

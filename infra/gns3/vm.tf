@@ -32,8 +32,8 @@ resource "libvirt_cloudinit_disk" "cloud-init" {
 
 resource "libvirt_domain" "gns3_server" {
   name   = "gns3"
-  memory = "19456"
-  vcpu   = 4
+  memory = "16384"
+  vcpu   = 8
 
   cloudinit = libvirt_cloudinit_disk.cloud-init.id
 

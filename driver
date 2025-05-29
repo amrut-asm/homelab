@@ -1,5 +1,4 @@
 #!/bin/bash
-set -eu
 
 openshift_config_generator () {
     touch openshift-generated/bootstrap.ign
