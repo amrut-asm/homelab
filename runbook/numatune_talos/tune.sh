@@ -23,18 +23,25 @@ virsh vcpupin gns3 1 77 --config
 virsh vcpupin gns3 2 78 --config
 virsh vcpupin gns3 3 79 --config
 virsh numatune gns3 --mode interleave --nodeset 1 --config
-# ----------------
-# Free 76 77 78 79
-# ----------------
-# node 1 cpus: 8 9 10 11 12 13 14 15 72 73 74 75 76 77 78 79
-# node 1 size: 32251 MB
-# node 1 free: 8275 MB
-# -------------
-# OpenShift SNO
-# -------------
-# node 2 cpus: 16 17 18 19 20 21 22 23 80 81 82 83 84 85 86 87
-# node 2 size: 32251 MB
-# node 2 free: 24733 MB
+
+# Worker 6
+virsh vcpupin talos-worker6 0 16 --config
+virsh vcpupin talos-worker6 1 17 --config
+virsh vcpupin talos-worker6 2 18 --config
+virsh vcpupin talos-worker6 3 19 --config
+virsh vcpupin talos-worker6 4 20 --config
+virsh vcpupin talos-worker6 5 21 --config
+virsh vcpupin talos-worker6 6 22 --config
+virsh vcpupin talos-worker6 7 23 --config
+virsh vcpupin talos-worker6 8 80 --config
+virsh vcpupin talos-worker6 9 81 --config
+virsh vcpupin talos-worker6 10 82 --config
+virsh vcpupin talos-worker6 11 83 --config
+virsh vcpupin talos-worker6 12 84 --config
+virsh vcpupin talos-worker6 13 85 --config
+virsh vcpupin talos-worker6 14 86 --config
+virsh vcpupin talos-worker6 15 87 --config
+virsh numatune talos-worker6 --mode interleave --nodeset 2 --config
 
 # Worker 1
 virsh vcpupin talos-worker1 0 24 --config
