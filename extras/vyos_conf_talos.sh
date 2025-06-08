@@ -186,8 +186,8 @@ set protocols bgp neighbor 192.168.16.18 address-family ipv4-unicast allowas-in 
 set protocols bgp neighbor 192.168.16.19 remote-as 64512
 set protocols bgp neighbor 192.168.16.19 address-family ipv4-unicast allowas-in number 1
 
-set protocols bgp 64512 router-id 192.168.16.101
-set protocols bgp 64512 neighbor 192.168.16.15 update-source 
+set protocols bgp neighbor 192.168.16.20 remote-as 64512
+set protocols bgp neighbor 192.168.16.20 address-family ipv4-unicast allowas-in number 1
 commit
 save
 exit

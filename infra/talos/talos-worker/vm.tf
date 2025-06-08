@@ -6,7 +6,7 @@ resource "libvirt_volume" "root_volume" {
 
 resource "libvirt_volume" "ceph_volume" {
   name   = "talos-worker-ceph${count.index+1}"
-  size = 200 * 1024 * 1024 * 1024
+  size = 500 * 1024 * 1024 * 1024
   format = "raw"
   count = length(var.talos_worker_ip_list)
 }

@@ -24,7 +24,7 @@ resource "talos_machine_configuration_apply" "controlplane" {
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.controlplane.machine_configuration
   node                        = var.talos_controlplane_nodes[count.index]
-  config_patches = [for f in fileset(path.module, "patches/*.yaml") : file("${path.module}/${f}")]
+  config_patches = [for f in fileset(path.module, "controlplane_patches/*.yaml") : file("${path.module}/${f}")]
   count = length(var.talos_controlplane_nodes)
 }
 
@@ -32,6 +32,7 @@ resource "talos_machine_configuration_apply" "worker" {
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
   node                        = var.talos_worker_nodes[count.index]
+  config_patches = [for f in fileset(path.module, "worker_patches/*.yaml") : file("${path.module}/${f}")]
   count = length(var.talos_worker_nodes)
 }
 
