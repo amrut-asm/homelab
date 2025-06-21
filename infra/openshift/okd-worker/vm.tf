@@ -7,7 +7,7 @@ resource "libvirt_volume" "root" {
 
 resource "libvirt_volume" "ceph-disk" {
   name   = "ceph-volume-okd-worker${count.index+1}"
-  size = 200 * 1024 * 1024 * 1024
+  size = 600 * 1024 * 1024 * 1024
   format = "raw"
   count = var.vm_count
 }

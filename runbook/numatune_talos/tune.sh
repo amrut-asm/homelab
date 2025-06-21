@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+set -x
 virsh vcpupin talos-master1 0 8 --config
 virsh vcpupin talos-master1 1 9  --config
 virsh vcpupin talos-master1 2 10 --config

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+set -x
 
 # Gns3
 virsh vcpupin gns3 0 80 --config
