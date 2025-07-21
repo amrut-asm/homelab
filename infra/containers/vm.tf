@@ -20,6 +20,7 @@ data "template_file" "network_config" {
     external_ip = var.external_ip,
     internal_ip = var.internal_ip,
     internal_gateway = var.internal_gateway,
+    external_gateway = var.external_gateway,
     dns_server = var.dns_server
   })
 }
