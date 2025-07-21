@@ -1,5 +1,18 @@
 #!/bin/bash
 set -x
+
+virsh vcpupin VyOS 0 64 --config
+virsh vcpupin VyOS 1 65 --config
+virsh vcpupin VyOS 2 66 --config
+virsh vcpupin VyOS 3 67 --config
+virsh numatune VyOS --mode interleave --nodeset 0 --config
+
+virsh vcpupin Services 0 68 --config
+virsh vcpupin Services 1 69 --config
+virsh vcpupin Services 2 70 --config
+virsh vcpupin Services 3 71 --config
+virsh numatune Services --mode interleave --nodeset 0 --config
+
 virsh vcpupin talos-master1 0 8 --config
 virsh vcpupin talos-master1 1 9  --config
 virsh vcpupin talos-master1 2 10 --config
