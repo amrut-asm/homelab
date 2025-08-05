@@ -6,5 +6,5 @@ cluster:
     disabled: true
   apiServer:
     certSANs:
-    - api-int.talos.internal.nanibot.net
-    - api.talos.internal.nanibot.net
+    - api-int.talos.nanibot.net
+    - api.talos.nanibot.net

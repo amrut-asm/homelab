@@ -67,7 +67,7 @@ resource "helm_release" "cilium" {
 
   set {
     name  = "k8sServiceHost"
-    value = "api-int.talos.internal.nanibot.net"
+    value = "api-int.talos.nanibot.net"
   }
 
   set {

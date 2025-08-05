@@ -6,25 +6,25 @@ spec:
   imageDigestMirrors:
   - mirrorSourcePolicy: NeverContactSource
     mirrors:
-    - quay.internal.nanibot.net
+    - quay.nanibot.net
     source: quay.io
   - mirrorSourcePolicy: NeverContactSource
     mirrors:
-    - registry-1.internal.nanibot.net
+    - registry-1.nanibot.net
     source: registry-1.docker.io
   - mirrorSourcePolicy: NeverContactSource
     mirrors:
-    - registry-k8s.internal.nanibot.net
+    - registry-k8s.nanibot.net
     source: registry.k8s.io
   - mirrorSourcePolicy: NeverContactSource
     mirrors:
-    - gcr.internal.nanibot.net
+    - gcr.nanibot.net
     source: gcr.io
   - mirrorSourcePolicy: NeverContactSource
     mirrors:
-    - ghcr.internal.nanibot.net
+    - ghcr.nanibot.net
     source: ghcr.io
   - mirrorSourcePolicy: NeverContactSource
     mirrors:
-    - openshift-ci.internal.nanibot.net
+    - openshift-ci.nanibot.net
     source: registry.ci.openshift.org

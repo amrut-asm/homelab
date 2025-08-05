@@ -3,16 +3,16 @@ machine:
     mirrors:
       quay.io:
         endpoints:
-          - https://quay.internal.nanibot.net
+          - https://quay.nanibot.net
       docker.io:
         endpoints:
-          - https://registry-1.internal.nanibot.net
+          - https://registry-1.nanibot.net
       gcr.io:
         endpoints:
-          - https://gcr.internal.nanibot.net
+          - https://gcr.nanibot.net
       ghcr.io:
         endpoints:
-          - https://ghcr.internal.nanibot.net
+          - https://ghcr.nanibot.net
       registry.k8s.io:
         endpoints:
-          - https://registry-k8s.internal.nanibot.net
+          - https://registry-k8s.nanibot.net
