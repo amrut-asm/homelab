@@ -18,11 +18,25 @@ virsh vcpupin talos-master3 2 74 --config
 virsh vcpupin talos-master3 3 75 --config
 virsh numatune talos-master3 --mode interleave --nodeset 1 --config
 
+# GNS3
 virsh vcpupin gns3 0 76 --config
 virsh vcpupin gns3 1 77 --config
 virsh vcpupin gns3 2 78 --config
 virsh vcpupin gns3 3 79 --config
 virsh numatune gns3 --mode interleave --nodeset 1 --config
+
+# VyOS and Services
+virsh vcpupin VyOS 0 64 --config
+virsh vcpupin VyOS 1 65  --config
+virsh vcpupin VyOS 2 66 --config
+virsh vcpupin VyOS 3 67 --config
+virsh numatune VyOS --mode interleave --nodeset 0 --config
+
+virsh vcpupin Services 0 68 --config
+virsh vcpupin Services 1 69  --config
+virsh vcpupin Services 2 70 --config
+virsh vcpupin Services 3 71 --config
+virsh numatune Services --mode interleave --nodeset 0 --config
 
 # Worker 6
 virsh vcpupin talos-worker6 0 16 --config
