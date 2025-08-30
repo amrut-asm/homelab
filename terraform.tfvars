@@ -69,6 +69,8 @@ talos_cluster_endpoint = "https://api-int.talos.nanibot.net:6443"
 
 talos_cluster_name = "talos-production"
 
+kubernetes_version = "1.33.4"
+
 talos_controlplane_nodes = [
   "192.168.16.12",
   "192.168.16.13",

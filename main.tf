@@ -84,6 +84,7 @@ module talos-init {
   cluster_name = var.talos_cluster_name
   talos_controlplane_nodes = var.talos_controlplane_nodes
   talos_worker_nodes = var.talos_worker_nodes
+  kubernetes_version = var.kubernetes_version
 }
 
 module talos-helm {
