@@ -110,3 +110,9 @@ module "gns3" {
   hostname = var.gns3_hostname
   private_key_path = var.gns3_private_key_path
 }
+
+module "keycloak-config" {
+  source = "./keycloak-config"
+  keycloak_client_secret = var.keycloak_client_secret
+  keycloak_admin_password = var.keycloak_admin_password
+}
