@@ -116,3 +116,12 @@ module "keycloak-config" {
   keycloak_client_secret = var.keycloak_client_secret
   keycloak_admin_password = var.keycloak_admin_password
 }
+
+module "vault-config" {
+  source = "./vault-config"
+  namespace = var.vault_namespace
+  vault_token = var.vault_token
+  oidc_client_id = var.oidc_client_id
+  oidc_client_secret = var.oidc_client_secret
+  oidc_discovery_url = var.oidc_discovery_url
+}

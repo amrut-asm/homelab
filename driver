@@ -53,6 +53,7 @@ print_help () {
     echo "13. talos-helm"
     echo "14. gns3"
     echo "15. keycloak-config"
+    echo "16. vault-config"
 }
 
 if [[ $# -ne 4 ]]
@@ -93,6 +94,7 @@ case $module in
     talos-helm) echo "Module: Talos Helm";;
     gns3) echo "Module: GNS3";;
     keycloak-config) echo "Module: Keycloak Config";;
+    vault-config) echo "Module: Vault Config";;
     *) print_help; exit 1;;
 esac
 
