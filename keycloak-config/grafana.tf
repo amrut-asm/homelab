@@ -36,7 +36,6 @@ resource "keycloak_openid_client_default_scopes" "grafana_client_default_scopes"
     "email",
     "roles",
     "web-origins",
-    "offline_access",
     keycloak_openid_client_scope.realm_roles.name,
   ]
 }
