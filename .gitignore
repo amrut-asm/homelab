@@ -9,6 +9,9 @@ openshift-binaries/*
 openshift-generated/*
 .openshift*
 openshift-configs/*
-!.gitkeep
 talosconfig
 kubeconfig
+sno-generated/*
+sno-configs/*
+!bootstrap-in-place-for-live-iso.ign
+!.gitkeep

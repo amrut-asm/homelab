@@ -125,3 +125,13 @@ module "vault-config" {
   oidc_client_secret = var.oidc_client_secret
   oidc_discovery_url = var.oidc_discovery_url
 }
+
+module "sno-config-generator" {
+  source = "./infra/openshift-sno/sno-config-generator"
+}
+
+module "openshift-sno" {
+  source = "./infra/openshift-sno/sno"
+  internal_mac = var.sno_internal_mac
+  internal_bridge = var.internal_bridge
+}
