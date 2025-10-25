@@ -6,8 +6,8 @@ resource "libvirt_volume" "root" {
 
 resource "libvirt_domain" "node" {
   name   = "okd-sno"
-  memory = "16384"
-  vcpu   = 8
+  memory = "32768"
+  vcpu   = 16
 
   autostart = true
 

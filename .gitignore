@@ -13,5 +13,5 @@ talosconfig
 kubeconfig
 sno-generated/*
 sno-configs/*
-!bootstrap-in-place-for-live-iso.ign
+bootstrap-in-place-for-live-iso.ign
 !.gitkeep
