@@ -14,6 +14,7 @@ resource "libvirt_domain" "node" {
   memory = "16384"
   vcpu   = 4
 
+  autostart = false
   coreos_ignition = libvirt_ignition.ignition.id
 
   console {

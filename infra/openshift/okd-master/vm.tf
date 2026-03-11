@@ -13,10 +13,10 @@ resource "libvirt_ignition" "ignition" {
 
 resource "libvirt_domain" "node" {
   name   = "okd-master${count.index+1}"
-  memory = "16384"
+  memory = "15360"
   vcpu   = 8
 
-  autostart = false
+  autostart = true
 
   coreos_ignition = libvirt_ignition.ignition[count.index].id
 
