@@ -36,6 +36,11 @@ resource "libvirt_domain" "services_server" {
   memory = "8192"
   vcpu   = 4
 
+
+  xml {
+    xslt = file("${path.module}/containers.xsl")
+  }
+
   cloudinit = libvirt_cloudinit_disk.cloud-init.id
 
   autostart = true

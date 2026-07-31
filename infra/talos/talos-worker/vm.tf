@@ -41,6 +41,10 @@ resource "libvirt_domain" "talos_server" {
   memory = "30720"
   vcpu   = 16
 
+  xml {
+    xslt = file("${path.module}/custom-${count.index+1}.xsl")
+  }
+
   cloudinit = libvirt_cloudinit_disk.cloud-init[count.index].id
 
   autostart = true

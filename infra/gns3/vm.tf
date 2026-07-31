@@ -35,9 +35,13 @@ resource "libvirt_domain" "gns3_server" {
   memory = "16384"
   vcpu   = 8
 
+  xml {
+    xslt = file("${path.module}/custom.xsl")
+  }
+
   cloudinit = libvirt_cloudinit_disk.cloud-init.id
 
-  autostart = true
+  autostart = false
 
   console {
     type        = "pty"

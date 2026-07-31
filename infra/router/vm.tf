@@ -8,6 +8,11 @@ resource "libvirt_domain" "vyos_server" {
   memory = "8192"
   vcpu   = 4
 
+
+  xml {
+    xslt = file("${path.module}/router.xsl")
+  }
+
   autostart = true
  
   boot_device {
