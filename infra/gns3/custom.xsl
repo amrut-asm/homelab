@@ -17,64 +17,90 @@
   <!-- ========================= -->
   <!-- CPU topology -->
   <!-- ========================= -->
-  
+
   <xsl:template match="cpu">
-  
+
     <cpu mode="host-passthrough"
          check="none"
          migratable="off">
-  
+
       <topology
         sockets="1"
         dies="1"
-        cores="4"
+        clusters="1"
+        cores="2"
         threads="2"/>
 
-      <feature policy='require' name='topoext'/>
-  
+      <feature policy="require" name="topoext"/>
+
     </cpu>
-  
+
   </xsl:template>
-  
+
+
+
   <!-- ========================= -->
   <!-- Domain ordering -->
   <!-- ========================= -->
 
   <xsl:template match="/domain">
+
     <xsl:copy>
 
       <xsl:apply-templates select="@*"/>
 
-      <!-- memory tuning -->
+
+      <!-- Memory tuning -->
       <memoryBacking>
         <locked/>
       </memoryBacking>
 
-      <!-- create IO thread before pinning it -->
+
+      <!-- IO threads -->
       <iothreads>1</iothreads>
+
+
 
       <!-- CPU pinning -->
       <cputune>
-        <vcpupin vcpu="0" cpuset="8"/>
-        <vcpupin vcpu="1" cpuset="72"/>
-        <vcpupin vcpu="2" cpuset="9"/>
-        <vcpupin vcpu="3" cpuset="73"/>
-        <vcpupin vcpu="4" cpuset="10"/>
-        <vcpupin vcpu="5" cpuset="74"/>
-        <vcpupin vcpu="6" cpuset="11"/>
-        <vcpupin vcpu="7" cpuset="75"/>
 
-        <emulatorpin cpuset="8"/>
 
-        <iothreadpin iothread="1" cpuset="9"/>
+        <!-- NUMA node 1
+             SMT pairs:
+
+             14  <-> 78
+             15  <-> 79
+        -->
+
+
+        <vcpupin vcpu="0" cpuset="14"/>
+        <vcpupin vcpu="1" cpuset="78"/>
+
+        <vcpupin vcpu="2" cpuset="15"/>
+        <vcpupin vcpu="3" cpuset="79"/>
+
+
+
+        <!-- Emulator threads -->
+        <emulatorpin cpuset="14-15,78-79"/>
+
+
+        <!-- Disk IO threads -->
+        <iothreadpin iothread="1" cpuset="14-15,78-79"/>
+
+
       </cputune>
+
+
 
       <!-- NUMA memory -->
       <numatune>
         <memory mode="strict" nodeset="1"/>
       </numatune>
 
-      <!-- copy everything except duplicated sections -->
+
+
+      <!-- Remove duplicated sections -->
       <xsl:apply-templates select="node()[
         not(self::memoryBacking)
         and not(self::iothreads)
@@ -82,15 +108,20 @@
         and not(self::numatune)
       ]"/>
 
+
     </xsl:copy>
+
   </xsl:template>
+
 
 
   <!-- ========================= -->
   <!-- Disk IO thread assignment -->
   <!-- ========================= -->
 
-  <xsl:template match="disk[@device='disk']/driver">
+
+  <!-- OS disk -->
+  <xsl:template match="disk[@device='disk'][driver/@type='qcow2']/driver">
 
     <driver
       name="qemu"
@@ -109,6 +140,7 @@
   <xsl:template match="interface">
 
     <interface>
+
       <xsl:apply-templates select="@*|node()[not(self::driver)]"/>
 
       <driver name="vhost" queues="4"/>
@@ -118,6 +150,7 @@
   </xsl:template>
 
 
+
   <!-- ========================= -->
   <!-- Disable balloon -->
   <!-- ========================= -->
@@ -125,6 +158,7 @@
   <xsl:template match="devices">
 
     <devices>
+
       <xsl:apply-templates select="@*|node()[not(self::memballoon)]"/>
 
       <memballoon model="none"/>

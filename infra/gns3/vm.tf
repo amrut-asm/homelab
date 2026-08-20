@@ -32,8 +32,8 @@ resource "libvirt_cloudinit_disk" "cloud-init" {
 
 resource "libvirt_domain" "gns3_server" {
   name   = "gns3"
-  memory = "16384"
-  vcpu   = 8
+  memory = "12288"
+  vcpu   = 4
 
   xml {
     xslt = file("${path.module}/custom.xsl")

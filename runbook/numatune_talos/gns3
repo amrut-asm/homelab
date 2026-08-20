@@ -1,0 +1,11 @@
+#!/bin/bash
+virsh vcpupin gns3 0 8 --config
+virsh vcpupin gns3 1 9 --config
+virsh vcpupin gns3 2 10 --config
+virsh vcpupin gns3 3 11 --config
+virsh vcpupin gns3 4 12 --config
+virsh vcpupin gns3 5 13 --config
+virsh vcpupin gns3 6 14 --config
+virsh vcpupin gns3 7 15 --config
+
+virsh numatune gns3 --mode strict --nodeset 1 --config
