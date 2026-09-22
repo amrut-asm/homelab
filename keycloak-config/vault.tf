@@ -11,7 +11,9 @@ resource "keycloak_openid_client" "vault" {
   access_type = "CONFIDENTIAL"
   standard_flow_enabled = true
   valid_redirect_uris = [
-    "https://vault.nanibot.net/oidc/callback"
+    "https://vault.nanibot.net/v1/auth/oidc/callback",
+    "https://vault.nanibot.net/ui/vault/auth/oidc/oidc/callback",
+    "http://localhost:8250/oidc/callback"
   ]
   web_origins = [
     "https://vault.nanibot.net"
